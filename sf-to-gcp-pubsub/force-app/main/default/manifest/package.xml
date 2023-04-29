@@ -23,6 +23,9 @@
             <members>Integration__c-Integration Layout</members>
             <name>Layout</name>
       </types>                 
-          
+      <types>
+            <members>Integration__c</members>
+            <name>CustomTab</name>
+      </types>                   
       <version>56.0</version>
 </Package>
