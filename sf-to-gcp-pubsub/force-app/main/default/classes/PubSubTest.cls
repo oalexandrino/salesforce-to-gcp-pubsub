@@ -49,7 +49,7 @@ public class PubSubTest
 
         Test.startTest();        
 
-            Case objCase = [SELECT Id,Subject,Status,Origin,Reason,WhoIsTheRequester__c FROM Case LIMIT 1];
+            Case objCase = [SELECT Id,Subject,Status,Origin,Reason FROM Case LIMIT 1];
             List<Case> caseList = new List<Case>();
             caseList.add(objCase);
             String serialisedCases = JSON.serialize(caseList);
