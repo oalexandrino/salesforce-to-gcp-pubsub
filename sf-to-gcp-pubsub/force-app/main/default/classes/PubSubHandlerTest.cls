@@ -8,7 +8,7 @@ public class PubSubHandlerTest
     @isTest
     static void testEnqueueJob() 
     {
-        String pubSubInGCP = 'NameInGCP';
+        String customMetaNameForPubSub = 'MyPubSubTesting';
         Test.setMock(HttpCalloutMock.class, new MockForPubSub()); 
 
         Test.startTest();
@@ -29,7 +29,7 @@ public class PubSubHandlerTest
                 objCase.Id,
                 serialisedCases, 
                 'OperationName', 
-                pubSubInGCP
+                customMetaNameForPubSub
             );
 
         Test.stopTest();
