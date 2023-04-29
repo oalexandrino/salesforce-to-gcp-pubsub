@@ -8,6 +8,8 @@
             <members>PubSubTest</members>
             <members>PubSubHandler</members>
             <members>PubSubHandlerTest</members>
+            <members>IntegrationObjectHelper</members>
+            <members>IntegrationObjectHelperTest</members>
             <name>ApexClass</name>
       </types>  
       <types>

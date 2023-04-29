@@ -1,6 +1,8 @@
 @isTest
 public class PubSubTest 
 {
+    public static final String PUB_SUB_TOPIC_NAME = 'topicName';
+
     @TestSetup
     static void makeData()
     {
@@ -8,9 +10,7 @@ public class PubSubTest
         objCase.Subject = 'Test';
         objCase.Status = 'Novo';
         objCase.Origin = 'Web';
-        objCase.Category__c = 'Informações gerais';
         objCase.Reason = 'Outros';
-        objCase.WhoIsTheRequester__c = 'Estudante';
         insert objCase;
     }
 
@@ -25,18 +25,18 @@ public class PubSubTest
 
         Test.startTest();
         
-            Case objCase = [SELECT Id,Subject,Status,Origin,Category__c,Reason,WhoIsTheRequester__c FROM Case LIMIT 1];
+            Case objCase = [SELECT Id,Subject,Status,Origin,Reason FROM Case LIMIT 1];
             List<Case> caseList = new List<Case>();
             caseList.add(objCase);
             String serialisedCases = JSON.serialize(caseList);
-            PubSubHandler.enqueueJob('Case',objCase.Id, serialisedCases, 'OperationName', System.Label.GPCPayableItem);
+            PubSubHandler.enqueueJob('Case',objCase.Id, serialisedCases, 'OperationName', PUB_SUB_TOPIC_NAME);
 
             PubSub gcpService = new PubSub(
                 'Case',
                 objCase.Id,
                 serialisedCases, 
                 'OperationName', 
-                System.Label.GPCPayableItem
+                PUB_SUB_TOPIC_NAME
             );            
 
         Test.stopTest();
@@ -49,7 +49,7 @@ public class PubSubTest
 
         Test.startTest();        
 
-            Case objCase = [SELECT Id,Subject,Status,Origin,Category__c,Reason,WhoIsTheRequester__c FROM Case LIMIT 1];
+            Case objCase = [SELECT Id,Subject,Status,Origin,Reason,WhoIsTheRequester__c FROM Case LIMIT 1];
             List<Case> caseList = new List<Case>();
             caseList.add(objCase);
             String serialisedCases = JSON.serialize(caseList);
@@ -59,10 +59,10 @@ public class PubSubTest
                 objCase.Id,
                 serialisedCases, 
                 'actionName', 
-                System.Label.GPCPayableItem
+                PUB_SUB_TOPIC_NAME
             );     
             
-            GoogleUtils googleUtilsObject = new GoogleUtils(System.Label.GPCPayableItem);
+            GoogleUtils googleUtilsObject = new GoogleUtils(PUB_SUB_TOPIC_NAME);
             
             HTTPResponse response = gcpService.pushDataToPubsub(
                 googleUtilsObject.authToken, 

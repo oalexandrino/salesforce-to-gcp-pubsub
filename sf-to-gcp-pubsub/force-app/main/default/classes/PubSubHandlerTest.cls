@@ -8,6 +8,7 @@ public class PubSubHandlerTest
     @isTest
     static void testEnqueueJob() 
     {
+        String pubSubInGCP = 'NameInGCP';
         Test.setMock(HttpCalloutMock.class, new MockForPubSub()); 
 
         Test.startTest();
@@ -16,9 +17,7 @@ public class PubSubHandlerTest
             objCase.Subject = '31/10/22';
             objCase.Status = 'Novo';
             objCase.Origin = 'Web';
-            objCase.Category__c = 'Informações gerais';
             objCase.Reason = 'Outros';
-            objCase.WhoIsTheRequester__c = 'Estudante';
             insert objCase;
 
             List<Case> caseList = new List<Case>();
@@ -30,7 +29,7 @@ public class PubSubHandlerTest
                 objCase.Id,
                 serialisedCases, 
                 'OperationName', 
-                System.Label.GPCPayableItem
+                pubSubInGCP
             );
 
         Test.stopTest();
