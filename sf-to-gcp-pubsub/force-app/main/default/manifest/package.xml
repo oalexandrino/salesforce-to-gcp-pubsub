@@ -26,6 +26,10 @@
       <types>
             <members>Integration__c</members>
             <name>CustomTab</name>
-      </types>                   
+      </types>              
+      <types>
+            <members>gcpPartition</members>
+            <name>PlatformCachePartition</name>
+      </types>           
       <version>56.0</version>
 </Package>
