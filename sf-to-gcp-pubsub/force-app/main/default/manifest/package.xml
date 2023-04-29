@@ -17,6 +17,12 @@
             <members>GCP_Key__mdt</members>
             <members>Integration__c</members>
             <name>CustomObject</name>
-      </types>               
+      </types>      
+      <types>
+            <members>GCP_Key__mdt-GCP Key Layout</members>
+            <members>Integration__c-Integration Layout</members>
+            <name>Layout</name>
+      </types>                 
+          
       <version>56.0</version>
 </Package>
