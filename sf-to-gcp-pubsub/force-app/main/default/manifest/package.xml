@@ -30,6 +30,10 @@
       <types>
             <members>gcpPartition</members>
             <name>PlatformCachePartition</name>
-      </types>           
+      </types>  
+      <types>
+            <members>GCP_PubSub</members>
+            <name>RemoteSiteSetting</name>
+      </types>                 
       <version>56.0</version>
 </Package>
