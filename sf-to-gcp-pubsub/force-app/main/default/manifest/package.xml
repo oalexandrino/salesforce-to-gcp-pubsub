@@ -56,13 +56,17 @@
             <name>Flow</name>
       </types>                    
       <types>
-            <members>gcpPartition</members>
+            <members>IntegrationPlatformEvent</members>
             <name>PlatformCachePartition</name>
       </types>  
       <types>
             <members>GCP_PubSub</members>
             <members>googleapis</members>
             <name>RemoteSiteSetting</name>
-      </types>                 
+      </types>   
+      <types>
+            <members>IntegrationPlatformEvent</members>
+            <name>PermissionSet</name>
+      </types>                     
       <version>56.0</version>
 </Package>
