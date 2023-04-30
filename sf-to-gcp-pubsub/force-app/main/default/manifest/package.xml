@@ -16,6 +16,7 @@
       <types>
             <members>GCP_Key__mdt</members>
             <members>Integration__c</members>
+            <members>IntegrationPlatformEvent__e</members>
             <name>CustomObject</name>
       </types>      
       <types>
@@ -29,6 +30,8 @@
             <members>Integration__c.IntegrationName__c</members>
             <members>Integration__c.IntegrationEventName__c</members>
             <members>Integration__c.ExternalKey__c</members>
+            <members>IntegrationPlatformEvent__e.Date__c</members>
+            <members>IntegrationPlatformEvent__e.Message__c</members>
             <name>CustomField</name>
       </types>            
       <types>
