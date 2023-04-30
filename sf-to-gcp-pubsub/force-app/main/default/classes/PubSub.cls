@@ -78,19 +78,9 @@ public class PubSub implements Queueable, Database.AllowsCallouts
     {
         String data;
         
-        public PubSubData(List<SObject> data, String action)
+        public PubSubData(List<Map<String, String>> data, String action)
         {
-            List< Map<String, Object>> newData = new List< Map<String, Object>>();
-            
-            for(SObject d : data)
-            {
-                //Create a copy of the map because the original is protected
-                Map<String, Object> fieldsToValue = new Map<String, Object>(d.getPopulatedFieldsAsMap());
-                fieldsToValue.put('action', action);
-                newData.add(fieldsToValue);
-            }
-
-            String jsonList = JSON.serialize(newData);
+            String jsonList = JSON.serialize(data);
             String encodedList = EncodingUtil.base64Encode(Blob.valueof(jsonList));
             this.data = encodedList;
         }
@@ -102,7 +92,7 @@ public class PubSub implements Queueable, Database.AllowsCallouts
     class PubsubRequest 
     {
         public List<PubSubData> messages = new List<PubSubData>();
-        public PubsubRequest(List<SObject> listData, String action)
+        public PubsubRequest(List<Map<String, String>> listData, String action)
         {
             PubSubData data = new PubSubData(listData, action);
             messages.add(data);
@@ -125,7 +115,7 @@ public class PubSub implements Queueable, Database.AllowsCallouts
     {
         System.debug('pushDataToPubsub has started...');
         
-        List<SObject> deserialisedData = (List<SObject>) JSON.deserialize(this.serializedData, List<SObject>.class);
+        List<Map<String, String>> deserialisedData = (List<Map<String, String>>) JSON.deserializeStrict(this.serializedData,List<Map<String, String>>.class);
         PubsubRequest requestMessage = new PubsubRequest(deserialisedData, this.action);
 
         System.debug('this.serializedData: ' + this.serializedData);

@@ -3,6 +3,14 @@
  */
 public with sharing class PubSubHandler 
 {
+    public static List<Map<String, String>> dataList = new List<Map<String, String>>();
+    public static String serializedData;
+
+    public static void addDataToList(Map<String, String> mapData)
+    {
+        dataList.add(mapData);
+    }
+
     /**
      * @description enqueueJob description
      * @author Olavo Alexandrino <oalexandrino@gmail.com>
@@ -10,12 +18,14 @@ public with sharing class PubSubHandler
      * @param  pubSubName           pubSubName description
      * @param  triggerOperationType triggerOperationType description
      */
-    public static Id enqueueJob(String salesforceObject, String recordId, String serialisedObjects, String integrationName, String eventName, String actionName, String pubSubName)
+    public static Id enqueueJob(String salesforceObject, String recordId, String integrationName, String eventName, String actionName, String pubSubName)
     {
+        PubSubHandler.serializedDAta = JSON.serialize(PubSubHandler.dataList);
+
         PubSub gcpService = new PubSub(
             salesforceObject,
             recordId,
-            serialisedObjects, 
+            PubSubHandler.serializedData, 
             integrationName, 
             eventName, 
             actionName, 
