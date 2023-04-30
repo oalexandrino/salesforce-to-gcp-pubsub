@@ -1,6 +1,7 @@
 @isTest
 public class PubSubHandlerTest 
 {
+    public static final String CUSTOM_META_DATA_FOR_PUB_SUB = 'MyPubSubTesting';
     /**
      * @description testQueueable description
      * @author Olavo Alexandrino <oalexandrino@gmail.com>
@@ -8,7 +9,6 @@ public class PubSubHandlerTest
     @isTest
     static void testEnqueueJob() 
     {
-        String customMetaNameForPubSub = 'MyPubSubTesting';
         Test.setMock(HttpCalloutMock.class, new MockForPubSub()); 
 
         Test.startTest();
@@ -24,7 +24,7 @@ public class PubSubHandlerTest
                 'GPCIntegration', 
                 'PublishToGooglePubSub', 
                 'Insert', 
-                customMetaNameForPubSub
+                CUSTOM_META_DATA_FOR_PUB_SUB
             );
 
         Test.stopTest();

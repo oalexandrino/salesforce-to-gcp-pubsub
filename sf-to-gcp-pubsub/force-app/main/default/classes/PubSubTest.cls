@@ -1,7 +1,7 @@
 @isTest
 public class PubSubTest 
 {
-    public static final String PUB_SUB_TOPIC_NAME = 'MyPubSubTesting';
+    public static final String CUSTOM_META_DATA_FOR_PUB_SUB = 'MyPubSubTesting';
 
     /**
      * @description testQueueable description
@@ -25,7 +25,7 @@ public class PubSubTest
                 'GPCIntegration', 
                 'PublishToGooglePubSub', 
                 'Insert', 
-                PUB_SUB_TOPIC_NAME
+                CUSTOM_META_DATA_FOR_PUB_SUB
             );          
 
         Test.stopTest();
@@ -53,10 +53,10 @@ public class PubSubTest
                 'GPCIntegration', 
                 'PublishToGooglePubSub', 
                 'Insert', 
-                PUB_SUB_TOPIC_NAME
+                CUSTOM_META_DATA_FOR_PUB_SUB
             );     
             
-            GoogleUtils googleUtilsObject = new GoogleUtils(PUB_SUB_TOPIC_NAME);
+            GoogleUtils googleUtilsObject = new GoogleUtils(CUSTOM_META_DATA_FOR_PUB_SUB);
             
             HTTPResponse response = gcpService.pushDataToPubsub(
                 googleUtilsObject.authToken, 
