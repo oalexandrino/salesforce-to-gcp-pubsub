@@ -34,6 +34,8 @@
             <members>IntegrationPlatformEvent__e.Message__c</members>
             <members>IntegrationPlatformEvent__e.IntegrationEventName__c</members>
             <members>IntegrationPlatformEvent__e.IntegrationName__c</members>
+            <members>IntegrationPlatformEvent__e.Status__c</members>
+            <members>IntegrationPlatformEvent__e.StatusCode__c</members>
             <name>CustomField</name>
       </types>            
       <types>
