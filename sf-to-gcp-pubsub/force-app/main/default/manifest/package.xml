@@ -50,7 +50,11 @@
       <types>
             <members>Integration__c</members>
             <name>CustomTab</name>
-      </types>              
+      </types>         
+      <types>
+            <members>CreateIntegration</members>
+            <name>Flow</name>
+      </types>                    
       <types>
             <members>gcpPartition</members>
             <name>PlatformCachePartition</name>

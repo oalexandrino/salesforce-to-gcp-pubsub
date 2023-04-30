@@ -6,8 +6,9 @@
     <isNameField>false</isNameField>
     <isSortingDisabled>false</isSortingDisabled>
     <label>StatusCode</label>
-    <length>3</length>
+    <precision>18</precision>
     <required>false</required>
-    <type>Text</type>
+    <scale>0</scale>
+    <type>Number</type>
     <unique>false</unique>
 </CustomField>
