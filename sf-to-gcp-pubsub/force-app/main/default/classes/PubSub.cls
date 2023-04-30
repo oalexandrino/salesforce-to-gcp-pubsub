@@ -10,10 +10,22 @@ public class PubSub implements Queueable, Database.AllowsCallouts
     private String serializedData;
 
     /**
+     * Integration`s name
+     */
+    @TestVisible       
+    private String integrationName;
+
+    /**
+     * event's name
+     */
+    @TestVisible       
+    private String eventName;    
+
+    /**
      * Action to be performed in GCP, can be 'create' in this example
      */
     @TestVisible       
-    private String action;
+    private String action;    
 
     /**
      * Metadata name in order to get the appropriate entry from sf metadata
@@ -46,11 +58,13 @@ public class PubSub implements Queueable, Database.AllowsCallouts
      * @param  metadataName   metadataName description
      * @return                return description
      */
-    public PubSub(String salesforceObject, String recordId, String serializedData, String action, String metadataName) 
+    public PubSub(String salesforceObject, String recordId, String serializedData, String integrationName, String eventName, String action, String metadataName) 
     {
         this.salesforceObject = salesforceObject;
         this.recordId = recordId;
         this.serializedData = serializedData;
+        this.eventName = eventName;
+        this.integrationName = integrationName;
         this.action = action;
         this.metadataName = metadataName;
     }    
@@ -183,8 +197,8 @@ public class PubSub implements Queueable, Database.AllowsCallouts
         dataObject.put('ResponseBody', String.valueOf(response.getBody()));
         dataObject.put('RequestBody', String.valueOf(requestBody));
         dataObject.put('SerializedRequestBody', String.valueOf(serializedRequestBody));
-        dataObject.put('IntegrationEventName', 'Publish');
-        dataObject.put('IntegrationName', 'GPC');
+        dataObject.put('IntegrationEventName', this.eventName);
+        dataObject.put('IntegrationName', this.integrationName);
         IntegrationObjectHelper.createIntegrationSobject(dataObject);  
     }      
 }

@@ -28,7 +28,9 @@ public class PubSubHandlerTest
                 'Case',
                 objCase.Id,
                 serialisedCases, 
-                'OperationName', 
+                'IntegrationName', 
+                'EventName', 
+                'Action', 
                 customMetaNameForPubSub
             );
 
