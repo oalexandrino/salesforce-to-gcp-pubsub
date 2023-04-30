@@ -69,6 +69,12 @@ public class PubSub implements Queueable, Database.AllowsCallouts
         this.metadataName = metadataName;
     }    
 
+    class WrapperData
+    {
+        public String action;
+        public List<Map<String, String>> data;
+    }
+
     /**
      * @description Class to construct the request body to publish to pubsub
      * The body should be {"messages":[{"data": "base64 encoded data" }]}
@@ -80,7 +86,11 @@ public class PubSub implements Queueable, Database.AllowsCallouts
         
         public PubSubData(List<Map<String, String>> data, String action)
         {
-            String jsonList = JSON.serialize(data);
+            WrapperData wData = new WrapperData();
+            wData.action = action;
+            wData.data = data;
+
+            String jsonList = JSON.serialize(wData);
             String encodedList = EncodingUtil.base64Encode(Blob.valueof(jsonList));
             this.data = encodedList;
         }
