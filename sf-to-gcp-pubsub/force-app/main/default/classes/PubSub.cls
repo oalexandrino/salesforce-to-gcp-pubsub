@@ -123,14 +123,14 @@ public class PubSub implements Queueable, Database.AllowsCallouts
         req.setHeader('Authorization', 'Bearer ' + token);
         req.setEndpoint(pubsubEndpoint);
         req.setMethod('POST');
-        String requestBody = JSON.serialize(requestMessage);
-        req.setBody(requestBody);
+        String serializedRequestBody = JSON.serialize(requestMessage);
+        req.setBody(serializedRequestBody);
 
         HTTPResponse response = new HttpResponse();
         System.debug('POST request to ' + pubsubEndpoint);
         response = http.send(req);
         setSerializedBody(response.getBody());
-        createIntegrationSobject(requestBody, response);
+        createIntegrationSobject(this.serializedData, serializedRequestBody, response);
         System.debug('PubSub.pushDataToPubsub() Response: ' + response);        
         System.debug('PubSub.pushDataToPubsub() getBody(): ' + response.getBody());
         System.debug('Request has been sent!');        
@@ -171,7 +171,7 @@ public class PubSub implements Queueable, Database.AllowsCallouts
      * @param  response response description
      */
     @TestVisible
-    private void createIntegrationSobject(String requestBody, HTTPResponse response)
+    private void createIntegrationSobject(String requestBody, String serializedRequestBody, HTTPResponse response)
     {
         // saves the transaction details
         Map<String,String> dataObject   = new Map<String,String>();
@@ -182,6 +182,7 @@ public class PubSub implements Queueable, Database.AllowsCallouts
         dataObject.put('StatusCode', String.valueOf(response.getStatusCode()));
         dataObject.put('ResponseBody', String.valueOf(response.getBody()));
         dataObject.put('RequestBody', String.valueOf(requestBody));
+        dataObject.put('SerializedRequestBody', String.valueOf(serializedRequestBody));
         dataObject.put('IntegrationEventName', 'Publish');
         dataObject.put('IntegrationName', 'GPC');
         IntegrationObjectHelper.createIntegrationSobject(dataObject);  

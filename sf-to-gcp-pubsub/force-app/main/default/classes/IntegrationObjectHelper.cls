@@ -17,6 +17,7 @@ public with sharing class IntegrationObjectHelper
             objIntegration.StatusCode__c   = Decimal.valueOf(dataObject.get('StatusCode'));
         }
         objIntegration.RequestBody__c           = dataObject.get('RequestBody');
+        objIntegration.SerializedRequestBody__c = dataObject.get('SerializedRequestBody');
         objIntegration.ResponseBody__c          = dataObject.get('ResponseBody');
         objIntegration.SalesforceObject__c      = dataObject.get('SalesforceObject');
         objIntegration.RecordId__c		        = dataObject.get('RecordId');        
