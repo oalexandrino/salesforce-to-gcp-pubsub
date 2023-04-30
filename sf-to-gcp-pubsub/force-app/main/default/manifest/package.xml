@@ -33,6 +33,7 @@
       </types>  
       <types>
             <members>GCP_PubSub</members>
+            <members>googleapis</members>
             <name>RemoteSiteSetting</name>
       </types>                 
       <version>56.0</version>
