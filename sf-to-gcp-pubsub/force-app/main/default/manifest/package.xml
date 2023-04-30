@@ -32,6 +32,8 @@
             <members>Integration__c.ExternalKey__c</members>
             <members>IntegrationPlatformEvent__e.Date__c</members>
             <members>IntegrationPlatformEvent__e.Message__c</members>
+            <members>IntegrationPlatformEvent__e.IntegrationEventName__c</members>
+            <members>IntegrationPlatformEvent__e.IntegrationName__c</members>
             <name>CustomField</name>
       </types>            
       <types>
