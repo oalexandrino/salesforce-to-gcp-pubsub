@@ -101,15 +101,16 @@ public class GoogleUtils
         claims.put('scope', this.scopes);
         jwt.setAdditionalClaims(claims);
 
-        // Create the object that signs the JWT bearer token
+        System.debug('Creating the object that signs the JWT bearer token...');
         Auth.JWS jws = new Auth.JWS(jwt, 'google_cloud');
 
-        // Get the resulting JWS in case debugging is required
+        System.debug('Getting the resulting JWS in case debugging is required...');
         String token = jws.getCompactSerialization();
 
-        // Set the token endpoint that the JWT bearer token is posted to
+        System.debug('Setting the token endpoint that the JWT bearer token is posted to...');
         String tokenEndpoint = this.serviceAccount.Token_Endpoint__c;       
         
+        System.debug('Creating the JWTBearerTokenExchange object...');
         Auth.JWTBearerTokenExchange bearer = new Auth.JWTBearerTokenExchange(tokenEndpoint, jws); 
 
         return bearer;
