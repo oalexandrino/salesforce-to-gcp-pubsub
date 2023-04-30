@@ -24,6 +24,10 @@
             <name>Layout</name>
       </types>                 
       <types>
+            <members>Integration_Record_Page</members>
+            <name>Flexipage</name>
+      </types>      
+      <types>
             <members>Integration__c</members>
             <name>CustomTab</name>
       </types>              
