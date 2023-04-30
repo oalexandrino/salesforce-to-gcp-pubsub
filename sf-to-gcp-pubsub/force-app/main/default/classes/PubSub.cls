@@ -177,7 +177,7 @@ public class PubSub implements Queueable, Database.AllowsCallouts
         Map<String,String> dataObject   = new Map<String,String>();
         dataObject.put('RecordId', this.recordId);
         dataObject.put('SalesforceObject', this.salesforceObject);
-        dataObject.put('ExternalKey', this.responseBody.messageIds.get(0));
+        dataObject.put('ExternalKey', this.responseBody?.messageIds?.get(0));
         dataObject.put('Status', String.valueOf(response.getStatus()));
         dataObject.put('StatusCode', String.valueOf(response.getStatusCode()));
         dataObject.put('ResponseBody', String.valueOf(response.getBody()));
