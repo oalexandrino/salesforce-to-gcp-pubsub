@@ -19,6 +19,19 @@
             <name>CustomObject</name>
       </types>      
       <types>
+            <members>Integration__c.StatusCode__c</members>
+            <members>Integration__c.Status__c</members>
+            <members>Integration__c.SerializedRequestBody__c</members>
+            <members>Integration__c.SalesforceObject__c</members>
+            <members>Integration__c.ResponseBody__c</members>
+            <members>Integration__c.RequestBody__c</members>
+            <members>Integration__c.RecordId__c</members>
+            <members>Integration__c.IntegrationName__c</members>
+            <members>Integration__c.IntegrationEventName__c</members>
+            <members>Integration__c.ExternalKey__c</members>
+            <name>CustomField</name>
+      </types>            
+      <types>
             <members>GCP_Key__mdt-GCP Key Layout</members>
             <members>Integration__c-Integration Layout</members>
             <name>Layout</name>
