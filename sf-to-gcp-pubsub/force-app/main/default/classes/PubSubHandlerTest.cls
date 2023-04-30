@@ -16,7 +16,7 @@ public class PubSubHandlerTest
             Map<String, String> map1 = new Map<String, String>();
             map1.put('name','Olavo Alexandrino');
             map1.put('role','Salesforce Software Developer');
-            PubSubHandler.addDataToList(map1);
+            PubSubHandler.addData(map1);
 
             Id jobId = PubSubHandler.enqueueJob(
                 'Case',

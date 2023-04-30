@@ -6,7 +6,7 @@ public with sharing class PubSubHandler
     public static List<Map<String, String>> dataList = new List<Map<String, String>>();
     public static String serializedData;
 
-    public static void addDataToList(Map<String, String> mapData)
+    public static void addData(Map<String, String> mapData)
     {
         dataList.add(mapData);
     }
