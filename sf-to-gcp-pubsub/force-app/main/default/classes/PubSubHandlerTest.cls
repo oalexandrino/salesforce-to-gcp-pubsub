@@ -13,24 +13,17 @@ public class PubSubHandlerTest
 
         Test.startTest();
         
-            Case objCase = new Case();
-            objCase.Subject = '31/10/22';
-            objCase.Status = 'Novo';
-            objCase.Origin = 'Web';
-            objCase.Reason = 'Outros';
-            insert objCase;
+            Map<String, String> map1 = new Map<String, String>();
+            map1.put('name','Olavo Alexandrino');
+            map1.put('role','Salesforce Software Developer');
+            PubSubHandler.addDataToList(map1);
 
-            List<Case> caseList = new List<Case>();
-            caseList.add(objCase);
-            String serialisedCases = JSON.serialize(caseList);
-            
             Id jobId = PubSubHandler.enqueueJob(
                 'Case',
-                objCase.Id,
-                serialisedCases, 
-                'IntegrationName', 
-                'EventName', 
-                'Action', 
+                'a0f5Y00000LucSOQAZ', // related to an internal record id
+                'GPCIntegration', 
+                'PublishToGooglePubSub', 
+                'Insert', 
                 customMetaNameForPubSub
             );
 

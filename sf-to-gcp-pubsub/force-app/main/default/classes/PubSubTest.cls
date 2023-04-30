@@ -1,18 +1,7 @@
 @isTest
 public class PubSubTest 
 {
-    public static final String PUB_SUB_TOPIC_NAME = 'topicName';
-
-    @TestSetup
-    static void makeData()
-    {
-        Case objCase = new Case();
-        objCase.Subject = 'Test';
-        objCase.Status = 'Novo';
-        objCase.Origin = 'Web';
-        objCase.Reason = 'Outros';
-        insert objCase;
-    }
+    public static final String PUB_SUB_TOPIC_NAME = 'MyPubSubTesting';
 
     /**
      * @description testQueueable description
@@ -24,20 +13,20 @@ public class PubSubTest
         Test.setMock(HttpCalloutMock.class, new MockForPubSub()); 
 
         Test.startTest();
-        
-            Case objCase = [SELECT Id,Subject,Status,Origin,Reason FROM Case LIMIT 1];
-            List<Case> caseList = new List<Case>();
-            caseList.add(objCase);
-            String serialisedCases = JSON.serialize(caseList);
-            PubSubHandler.enqueueJob('Case',objCase.Id, serialisedCases, 'OperationName', PUB_SUB_TOPIC_NAME);
+            
+            Map<String, String> map1 = new Map<String, String>();
+            map1.put('name','Olavo Alexandrino');
+            map1.put('role','Salesforce Software Developer');
+            PubSubHandler.addDataToList(map1);
 
-            PubSub gcpService = new PubSub(
+            Id jobId = PubSubHandler.enqueueJob(
                 'Case',
-                objCase.Id,
-                serialisedCases, 
-                'OperationName', 
+                'a0f5Y00000LucSOQAZ', // related to an internal record id
+                'GPCIntegration', 
+                'PublishToGooglePubSub', 
+                'Insert', 
                 PUB_SUB_TOPIC_NAME
-            );            
+            );          
 
         Test.stopTest();
     }
@@ -49,16 +38,21 @@ public class PubSubTest
 
         Test.startTest();        
 
-            Case objCase = [SELECT Id,Subject,Status,Origin,Reason FROM Case LIMIT 1];
-            List<Case> caseList = new List<Case>();
-            caseList.add(objCase);
-            String serialisedCases = JSON.serialize(caseList);
+            Map<String, String> dataMap = new Map<String, String>();
+            dataMap.put('name','Olavo Alexandrino');
+            dataMap.put('role','Salesforce Software Developer');
+
+            List<Map<String, String>> dataList = new List<Map<String, String>>();
+            dataList.add(dataMap);
+            String serializedData = JSON.serialize(dataList);
 
             PubSub gcpService = new PubSub(
                 'Case',
-                objCase.Id,
-                serialisedCases, 
-                'actionName', 
+                'a0f5Y00000LucSOQAZ',
+                serializedData, 
+                'GPCIntegration', 
+                'PublishToGooglePubSub', 
+                'Insert', 
                 PUB_SUB_TOPIC_NAME
             );     
             
